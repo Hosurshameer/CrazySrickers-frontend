@@ -17,14 +17,14 @@ export default function Home() {
         Add a touch of creativity to your space with our wide range of fun and
         unique stickers.Perfect for any occasion!
       </PageHeading>
-      <ProductListings products={products} />
+      <ProductListings products={products.content} />
     </div>
   );
 }
 
 export async function productsLoader() {
   try {
-    const response = await apiClient.get("/products");
+    const response = await apiClient.get("/products?page=0&size=10");
     return response.data;
   } catch (error) {
     throw new Response(
