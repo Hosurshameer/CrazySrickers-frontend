@@ -38,19 +38,20 @@ export default function Home() {
       <button 
       disabled={curPage===0}
       onClick={()=>fetchPage(curPage-1)}
-      className="px-4 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-600 transition-colors cursor-pointer-prev"
+      className="bg-primary dark:bg-light text-white dark:text-primary font-medium text-sm py-2 px-4 disabled:bg-gray-300 disabled:text-gray-600 rounded-md hover:cursor-pointer"
       >
         Prev</button>
            <span>Page {curPage + 1} of {fetchedProducts.totalPages}</span>
       <button
       disabled={curPage>=fetchedProducts.totalPages-1}
       onClick={()=>fetchPage(curPage+1)}
-      className="px-4 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-600 transition-colors cursor-pointer"
+      className="bg-primary dark:bg-light text-white dark:text-primary font-medium text-sm py-2 px-4 disabled:bg-gray-300 disabled:text-gray-600 rounded-md hover:cursor-pointer"
       >
      Next
       </button>
 
     </div>
+    
     </>
   );
 }
