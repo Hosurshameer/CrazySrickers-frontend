@@ -5,21 +5,16 @@ import SearchBox from "./SearchBox";
 import { useState } from "react";
 
 const sortList = ["Popularity", "Price Low to High", "Price High to Low"];
-export default function ProductListings({ products }) {
-  const [searchText, setSearchText] = useState("");
+export default function ProductListings({ products,searchText,onSearch}) {
+ 
   const [selectedSort, setSelectedSort] = useState("Popularity");
 
   const filteredAndSortedProducts = useMemo(() => {
     if (!Array.isArray(products)) {
       return [];
     }
-    let filteredAndSortedProducts = products.filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchText.toLowerCase())
-    );
-
-    return filteredAndSortedProducts.slice().sort((a, b) => {
+    
+    return products.slice().sort((a, b) => {
       switch (selectedSort) {
         case "Price Low to High":
           return parseFloat(a.price) - parseFloat(b.price);
@@ -32,11 +27,9 @@ export default function ProductListings({ products }) {
           return parseInt(b.popularity - a.popularity);
       }
     });
-  }, [searchText, selectedSort, products]);
+  }, [selectedSort, products]);
 
-  function handleSearch(inputSearch) {
-    setSearchText(inputSearch);
-  }
+  
 
   function handleSortChange(sortType) {
     setSelectedSort(sortType);
@@ -49,7 +42,7 @@ export default function ProductListings({ products }) {
           label="Search"
           placeholder="Search products.."
           value={searchText}
-          handleSearch={(val) => handleSearch(val)}
+          handleSearch={onSearch}
         />
         <Dropdown
           label="Sort by"
