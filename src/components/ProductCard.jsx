@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
             <Price currency="$" price={product.price} />
           </div>
           <button
-            className="bg-primary dark:bg-light text-white dark:text-primary font-medium text-sm py-2 px-4 rounded-md hover:cursor-pointer"
+            className="bg-primary dark:bg-primary text-white dark:text-gray-300 font-medium text-sm py-2 px-4 rounded-md hover:cursor-pointer"
             onClick={() => addToCart(product, 1)}
           >
             Add to Cart
