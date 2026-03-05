@@ -23,12 +23,12 @@ export default function UserOrdersAfterClick() {
 
        
     </div>
-       <div className="w-64 mx-auto mt-10 bg-blue-200">
+       <div className="w-64 mx-auto mt-10 ">
            <Link
               to="/orders"
-              className=" mx-auto   py-2 px-4 bg-primary dark:bg-light text-white dark:text-black text-xl font-semibold rounded-sm flex justify-center items-center hover:bg-dark dark:hover:bg-lighter transition"
+              className=" mx-auto   py-2 px-4 bg-primary dark:bg-primary text-white dark:text-gray-200 text-xl font-semibold rounded-sm flex justify-center items-center hover:bg-dark overflow-hidden transition"
             >
-              Back Orders
+              Back to Orders
             </Link>
             </div>
             </>

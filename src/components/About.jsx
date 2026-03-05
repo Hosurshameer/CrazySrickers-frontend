@@ -2,25 +2,25 @@ import React from "react";
 import PageTltle from "./PageTltle";
 
 export default function About() {
-  const h3Style = "text-lg font-semibold text-primary dark:text-light mb-2";
+  const h3Style = "text-lg font-semibold text-primary dark:text-primary mb-2";
   const pStyle = "text-gray-600 dark:text-lighter";
   return (
     <div className="max-w-[1152px] min-h-[852px] mx-auto px-6 py-8 font-primary">
       <PageTltle title="About Us" />
       {/* About Us Content */}
       <p className="leading-6 mb-8 text-gray-600 dark:text-lighter">
-        <span className="text-lg font-semibold text-primary dark:text-light">
+        <span className="text-lg font-semibold text-primary dark:text-primary">
          Crazy Stickers
         </span>{" "}
         store is an initiative by{" "}
-        <span className="text-lg font-semibold text-primary dark:text-light">
+        <span className="text-lg font-semibold text-primary dark:text-primary">
           Designs by Sameer Sandy
         </span>
         , dedicated to offering you the most sought-after stickers and posters!
       </p>
 
       {/* Why Choose Us Section */}
-      <h2 className="text-2xl leading-[32px] font-bold text-primary dark:text-light mb-6">
+      <h2 className="text-2xl leading-[32px] font-bold text-primary dark:primary mb-6">
         Why Choose Us?
       </h2>
 

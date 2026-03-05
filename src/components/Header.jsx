@@ -76,7 +76,7 @@ export default function Header() {
   const navLink =
     "text-center text-lg font-primary font-semibold text-primary py-2  dark:text-primary hover:text-dark dark:hover:text-[#0080a3] transition-colors";
   const dropdownLinkClass =
-    "block w-full text-left px-4 py-2 text-lg font-primary font-semibold text-primary dark:text-light hover:bg-gray-100 dark:hover:bg-gray-600";
+    "block w-full text-left px-4 py-2 text-lg font-primary font-semibold text-primary dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-900";
 
   return (
     <header className="border-b border-primary/30 dark:border-primary/30 sticky top-0 z-20 bg-normalbg dark:bg-black">
@@ -140,7 +140,7 @@ export default function Header() {
                     </span>
                     <FontAwesomeIcon
                       icon={faAngleDown}
-                      className="text-primary dark:text-light w-6 h-6"
+                      className="text-primary dark:text-primary w-6 h-6"
                     />
                   </button>
                   {isUserMenuOpen && (
@@ -217,7 +217,7 @@ export default function Header() {
               <Link to="/cart" className="relative text-primary py-2 ">
                 <FontAwesomeIcon
                   icon={faShoppingBasket}
-                  className="text-primary dark:text-light w-6"
+                  className="text-primary dark:text-primary w-6"
                 />
                 <div className="absolute -top-2 -right-6 text-xs bg-yellow-400 text-black font-semibold rounded-full px-2 py-1 leading-none">
                   {totalQuantity}
