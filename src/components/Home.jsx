@@ -50,7 +50,7 @@ export default function Home() {
       <button
       disabled={curPage>=fetchedProducts.totalPages-1}
       onClick={()=>fetchPage(curPage+1,searchText)}
-      className="bg-primary dark:bg-light text-white dark:text-primary font-medium text-sm py-2 px-4 disabled:bg-gray-300 disabled:text-gray-600 rounded-md hover:cursor-pointer"
+      className="bg-primary dark:bg-primary text-white dark:text-gray-300 font-medium text-sm py-2 px-4 disabled:bg-gray-300 disabled:text-gray-600 rounded-md hover:cursor-pointer"
       >
      Next
       </button>
