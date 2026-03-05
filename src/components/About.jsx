@@ -10,11 +10,11 @@ export default function About() {
       {/* About Us Content */}
       <p className="leading-6 mb-8 text-gray-600 dark:text-lighter">
         <span className="text-lg font-semibold text-primary dark:text-light">
-          eazy sticker
+         Crazy Stickers
         </span>{" "}
         store is an initiative by{" "}
         <span className="text-lg font-semibold text-primary dark:text-light">
-          Designs by eazybytes
+          Designs by Sameer Sandy
         </span>
         , dedicated to offering you the most sought-after stickers and posters!
       </p>
