@@ -40,6 +40,7 @@ import { adminOrdersLoader } from "./components/admin/AdminOrders.jsx";
 import { messagesLoader } from "./components/admin/Messages.jsx";
 import AdminOrderAfterClick from "./components/AdminOrderAfterClick.jsx";
 import UserOrdersAfterClick from "./components/UserOrdersAfterClick.jsx";
+import { contactLoader } from "./components/Contact.jsx";
 
 
 const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
@@ -50,7 +51,7 @@ const routeDefinations = createRoutesFromElements(
     <Route index element={<Home />} loader={productsLoader} />
     <Route path="/home" element={<Home />} loader={productsLoader} />
     <Route path="/about" element={<About />} />
-    <Route path="/contact" element={<Contact />} action={contactAction} />
+    <Route path="/contact" element={<Contact />} action={contactAction} loader={contactLoader} />
     <Route path="/login" element={<Login />} action={loginAction} />
     <Route path="/cart" element={<Cart />} />
     <Route path="/register" element={<Register />} action={registerAction} />

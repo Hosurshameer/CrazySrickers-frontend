@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PageTltle from "./PageTltle";
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import apiClient from "../api/apiClient";
 import { useActionData } from "react-router-dom";
 import { useRef } from "react";
@@ -10,6 +10,7 @@ import { redirect } from "react-router-dom";
 import { useSubmit } from "react-router-dom";
 
 export default function Contact() {
+  const contactInfo=useLoaderData();
   const actionData = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -48,6 +49,29 @@ export default function Contact() {
         We’d love to hear from you! If you have any questions, feedback, or
         suggestions, please don’t hesitate to reach out.
       </p>
+
+
+ {/* Contact Info + Form Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-[952px] mx-auto mt-8">
+        {/* Left: Contact Details */}
+        <div className="text-primary dark:text-light  p-6">
+          <h2 className="text-2xl font-semibold mb-4">Contact Info</h2>
+          {contactInfo && (
+            <>
+              <p className="mb-4">
+                <strong>Phone:</strong> {contactInfo.phone}
+              </p>
+              <p className="mb-4">
+                <strong>Email:</strong> {contactInfo.email}
+              </p>
+              <p className="mb-4">
+                <strong>Address:</strong> {contactInfo.address}
+              </p>
+            </>
+          )}
+        </div>
+       
+
 
       {/* Contact Form */}
       <Form
@@ -156,6 +180,7 @@ export default function Contact() {
           </button>
         </div>
       </Form>
+       </div>
     </div>
   );
 }
@@ -184,6 +209,20 @@ export async function contactAction({ request, params }) {
       {
         status: error.status || 500,
       }
+    );
+  }
+}
+
+export async function contactLoader() {
+  try {
+    const response = await apiClient.get("/contacts"); // Axios GET Request
+    return response.data;
+  } catch (error) {
+    throw new Response(
+      error.response?.data?.errorMessage ||
+        error.message ||
+        "Failed to fetch profile details. Please try again.",
+      { status: error.status || 500 }
     );
   }
 }
