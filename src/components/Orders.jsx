@@ -87,6 +87,7 @@ export default function Orders() {
 export async function ordersLoader() {
   try {
     const response = await apiClient.get("/orders"); // Axios GET Request
+    console.log("sameer sandy");
     
     return response.data;
   } catch (error) {
