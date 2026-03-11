@@ -3,6 +3,7 @@ import apiClient from "../api/apiClient";
 import { useLoaderData } from "react-router-dom";
 import PageTltle from "./PageTltle";
 import { Link } from "react-router-dom";
+import BackToHome from "./BackToHome";
 
 
 export default function Orders() {
@@ -17,6 +18,7 @@ export default function Orders() {
     });
   }
   return (
+    <>
     <div className="min-h-[852px] container mx-auto px-6 py-12 font-primary dark:bg-darkbg">
       {orders.length === 0 ? (
         <p className="text-center text-2xl  text-primary dark:text-lighter">
@@ -75,12 +77,17 @@ export default function Orders() {
                     </div>
                   </div>
                 ))}
+
               </div>
             </div>
           ))}
         </div>
       )}
     </div>
+    <div className="flex justify-center mt-1">
+    <BackToHome/>
+    </div>
+    </>
   );
 }
 
