@@ -14,7 +14,7 @@ export default function Messages(){
       await apiClient.patch(`/admin/messages/${contactId}/close`);
       toast.success("Message closed");
       revalidator.revalidate();
-      console.log("sameer");
+      
       
     }catch(error){
       toast.error("Failed to close messages");
