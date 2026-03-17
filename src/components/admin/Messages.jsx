@@ -15,6 +15,7 @@ export default function Messages(){
       toast.success("Message closed");
       revalidator.revalidate();
       console.log("sameer");
+      console.log("sandy");
     }catch(error){
       toast.error("Failed to close messages");
     }
