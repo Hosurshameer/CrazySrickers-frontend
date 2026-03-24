@@ -1,11 +1,11 @@
 import { createContext, useEffect, useContext, useReducer } from "react";
 
 // STEP 1
-const AuthContext = createContext(); 
+const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-// Action types 
+// Action types
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
 
