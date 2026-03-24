@@ -54,7 +54,7 @@ const isAddressIncomplete=useMemo(()=>{
               {/* Back to Products Button */}
               <Link
                 to="/home"
-                className="py-2 px-4 bg-primary dark:bg-primary text-white dark:text-black text-xl font-semibold  dark:text-gray-600 rounded-sm flex justify-center items-center hover:bg-dark  transition"
+                className="py-2 px-4 bg-primary dark:bg-primary text-white  text-xl font-semibold  dark:text-gray-200 rounded-sm flex justify-center items-center hover:bg-dark  transition"
               >
                 Back to Products
               </Link>

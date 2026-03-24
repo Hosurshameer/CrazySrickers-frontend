@@ -18,9 +18,6 @@ apiClient.interceptors.request.use(
     const jwtToken=localStorage.getItem("jwtToken");
     if(jwtToken){
       config.headers.Authorization=`Bearer ${jwtToken}`;
-     
-     
-      
     }
 
         const safeMethods=["GET","HEAD","OPTIONS"];
