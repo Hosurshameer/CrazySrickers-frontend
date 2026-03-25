@@ -1,10 +1,11 @@
 import React from "react";
 import Price from "./Price";
 import { Link } from "react-router-dom";
-import { useCart } from "../store/cart-context";
+import { addToCart } from "../store/cart-slice";
+import { useDispatch } from "react-redux";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
+const dispatch=useDispatch();
   return (
     <div className="w-72 rounded-md mx-auto border border-primary/40 dark:border-primary/40 shadow-md overflow-hidden flex flex-col bg-white dark:bg-black hover:border-primary dark:hover:border-primary transition">
       <Link
@@ -31,7 +32,7 @@ export default function ProductCard({ product }) {
           </div>
           <button
             className="bg-primary dark:bg-primary dark:text-gray-300 text-white  font-medium text-sm py-2 px-4 rounded-md hover:cursor-pointer"
-            onClick={() => addToCart(product, 1)}
+            onClick={() => dispatch(addToCart(product, 1))}
           >
             Add to Cart
           </button>
