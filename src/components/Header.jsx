@@ -8,7 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useCart } from "../store/cart-context";
+// import { useCart } from "../store/cart-context";
+import { selectTotalQuantity } from "../store/cart-slice";
+import { useSelector } from "react-redux";
 import { useAuth } from "../store/auth-context";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +40,11 @@ export default function Header() {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   });
 
-  const { totalQuantity } = useCart();
+  const  totalQuantity  = useSelector(selectTotalQuantity);
+
+   
+
+  
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
