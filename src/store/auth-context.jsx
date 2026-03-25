@@ -21,7 +21,7 @@ const authReducer = (prevState, action) => {
       };
     case LOGOUT:
       return {
-        ...prevState,
+        ...prevState, 
         jwtToken: null,
         user: null,
         isAuthenticated: false,
