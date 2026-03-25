@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import emptyCartImage from "../assets/util/emptyCart.png";
 import PageTltle from "./PageTltle";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../store/cart-context";
+// import { useCart } from "../store/cart-context";
 import { useMemo } from "react";
 import CartTable from "./CartTable";
 import { useAuth } from "../store/auth-context";
+import { selectCartItems } from "../store/cart-slice";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
-  const { cart } = useCart();
+  // const { cart } = useCart();
+  const cart=useSelector(selectCartItems);
+  
   const {isAuthenticated,user}=useAuth();
 
 
