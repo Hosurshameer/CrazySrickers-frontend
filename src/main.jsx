@@ -18,7 +18,9 @@ import { productsLoader } from "./components/Home.jsx";
 import { contactAction } from "./components/Contact.jsx";
 import { ToastContainer, Bounce } from "react-toastify";
 import ProductDetail from "./components/ProductDetail.jsx";
-import { CartProvider } from "./store/cart-context.jsx";
+// import { CartProvider } from "./store/cart-context.jsx";
+import store from "./store/store.js";
+import { Provider } from "react-redux";
 import { loginAction } from "./components/Login.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./store/auth-context.jsx";
@@ -79,9 +81,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Elements stripe={stripePromise}>
     <AuthProvider>
-      <CartProvider>
+      <Provider store={store}>
         <RouterProvider router={appRouter} />
-      </CartProvider>
+      </Provider>
     </AuthProvider>
 
     <ToastContainer
