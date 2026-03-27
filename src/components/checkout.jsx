@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../store/auth-context";
+// import { useAuth } from "../store/auth-context";
 import apiClient from "../api/apiClient";
 // import { useCart } from "../store/cart-context";
 import {
@@ -14,10 +14,10 @@ import PageTltle from "./PageTltle";
 import { toast } from "react-toastify";
 import { selectCartItems,selectTotalPrice,clearCart } from "../store/cart-slice";
 import { useSelector,useDispatch } from "react-redux";
+import { selectUser } from "../store/auth-slice";
 
 export default function CheckoutForm() {
-  const { user } = useAuth();
-  // const { cart, totalPrice, clearCart } = useCart();
+  const user=useSelector(selectUser);
   const cart=useSelector(selectCartItems);
   const totalPrice=useSelector(selectTotalPrice);
   const dispatch=useDispatch();
