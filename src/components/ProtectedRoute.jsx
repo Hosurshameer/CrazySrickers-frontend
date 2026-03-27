@@ -1,12 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { useAuth } from "../store/auth-context";
+
 import { Navigate } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { selectIsAuthenticated } from "../store/auth-slice";
+import { useSelector } from "react-redux";
 
 export default function ProtectedRoute() {
-  const { isAuthenticated } = useAuth();
+  
+  const isAuthenticated=useSelector(selectIsAuthenticated);
   const location = useLocation();
   useEffect(() => {
     const skipRedirect=sessionStorage.getItem("skipRedirectPath")==="true";
