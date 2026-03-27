@@ -6,15 +6,17 @@ import { useNavigate } from "react-router-dom";
 // import { useCart } from "../store/cart-context";
 import { useMemo } from "react";
 import CartTable from "./CartTable";
-import { useAuth } from "../store/auth-context";
+// import { useAuth } from "../store/auth-context";
 import { selectCartItems } from "../store/cart-slice";
 import { useSelector } from "react-redux";
+import { selectIsAuthenticated,selectUser } from "../store/auth-slice";
 
 export default function Cart() {
   // const { cart } = useCart();
   const cart=useSelector(selectCartItems);
   
-  const {isAuthenticated,user}=useAuth();
+  const isAuthenticated=useSelector(selectIsAuthenticated);
+  const user=useSelector(selectUser);
 
 
 
