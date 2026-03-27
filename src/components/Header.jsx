@@ -10,10 +10,13 @@ import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 // import { useCart } from "../store/cart-context";
 import { selectTotalQuantity } from "../store/cart-slice";
-import { useSelector } from "react-redux";
-import { useAuth } from "../store/auth-context";
+
+// import { useAuth } from "../store/auth-context";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { selectIsAuthenticated,selectUser,logout} from "../store/auth-slice";
+
+import { useSelector,useDispatch } from "react-redux";
 
 export default function Header() {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -34,7 +37,12 @@ export default function Header() {
     setUserMenuOpen((prev)=>!prev);
   };
 
-  const { isAuthenticated, user, logout } = useAuth();
+  // const { isAuthenticated, user, logout } = useAuth();
+
+  const dispatch=useDispatch();
+  const isAuthenticated=useSelector(selectIsAuthenticated);
+  const user=useSelector(selectUser);
+   
     const isAdmin =user?.roles?.includes("ROLE_ADMIN");
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
@@ -75,7 +83,7 @@ export default function Header() {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    logout();
+    dispatch(logout());
     toast.success("Logged out successfully");
     navigate("/home");
   };
