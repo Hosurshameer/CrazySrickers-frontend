@@ -6,10 +6,13 @@ import { useActionData, useNavigation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiClient from "../api/apiClient";
 import { toast } from "react-toastify";
-import { useAuth } from "../store/auth-context";
+
+import { loginSuccess} from "../store/auth-slice";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
-  const { loginSuccess } = useAuth();
+  // const { loginSuccess } = useAuth();
+ const dispatch=useDispatch();
   const actionData = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -20,7 +23,7 @@ export default function Login() {
 
   useEffect(() => {
     if (actionData?.success) {
-      loginSuccess(actionData.jwtToken, actionData.user);
+      dispatch(loginSuccess({jwtToken:actionData.jwtToken,user:actionData.user}));
       sessionStorage.removeItem("redirectPath");
       setTimeout(()=>{
             navigate(from);
