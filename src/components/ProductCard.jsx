@@ -32,7 +32,7 @@ const dispatch=useDispatch();
           </div>
           <button
             className="bg-primary dark:bg-primary dark:text-gray-300 text-white  font-medium text-sm py-2 px-4 rounded-md hover:cursor-pointer"
-            onClick={() => dispatch(addToCart(product, 1))}
+            onClick={() => dispatch(addToCart({product, quantity:1}))}
           >
             Add to Cart
           </button>
