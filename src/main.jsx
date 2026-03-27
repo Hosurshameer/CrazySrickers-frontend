@@ -23,7 +23,7 @@ import store from "./store/store.js";
 import { Provider } from "react-redux";
 import { loginAction } from "./components/Login.jsx";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthProvider } from "./store/auth-context.jsx";
+// import { AuthProvider } from "./store/auth-context.jsx";
 import Checkout from "./components/checkout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Orders from "./components/Orders.jsx";
@@ -80,11 +80,11 @@ const appRouter = createBrowserRouter(routeDefinations);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Elements stripe={stripePromise}>
-    <AuthProvider>
+   
       <Provider store={store}>
         <RouterProvider router={appRouter} />
       </Provider>
-    </AuthProvider>
+    
 
     <ToastContainer
       position="top-center"
