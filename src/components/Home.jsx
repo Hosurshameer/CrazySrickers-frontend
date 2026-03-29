@@ -11,7 +11,7 @@ export default function Home() {
   const[curPage,setCurPage]=useState(products.currentPage);
   const[searchText,setSearchText]=useState("");
 
- const handleSearch=((val)=>{
+ const handleSearch=((val )=>{
   setSearchText(val);
   fetchPage(0,val);
  })
