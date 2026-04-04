@@ -213,6 +213,8 @@ export async function contactAction({ request, params }) {
   }
 }
 
+
+
 export async function contactLoader() {
   try {
     const response = await apiClient.get("/contacts"); // Axios GET Request

@@ -20,22 +20,22 @@ apiClient.interceptors.request.use(
       config.headers.Authorization=`Bearer ${jwtToken}`;
     }
 
-        const safeMethods=["GET","HEAD","OPTIONS"];
-        if(!safeMethods.includes(config.method.toUpperCase())){
-             let csrfToken=Cookies.get("XSRF-TOKEN");
-             if(!csrfToken){
-              await axios.get(`${import.meta.env.VITE_API_BASE_URL}/csrf-token`,
-               {withCredentials:true},
-              );
-           csrfToken=Cookies.get("XSRF-TOKEN");
-           if(!csrfToken){
-            throw new Error("Failed to retrieve the csrf Token from cookies");
-           }
-             }
-                config.headers["X-XSRF-TOKEN"]=csrfToken;
+        // const safeMethods=["GET","HEAD","OPTIONS"];
+        // if(!safeMethods.includes(config.method.toUpperCase())){
+        //      let csrfToken=Cookies.get("XSRF-TOKEN");
+        //      if(!csrfToken){
+        //       await axios.get(`${import.meta.env.VITE_API_BASE_URL}/csrf-token`,
+        //        {withCredentials:true},
+        //       );
+        //    csrfToken=Cookies.get("XSRF-TOKEN");
+        //    if(!csrfToken){
+        //     throw new Error("Failed to retrieve the csrf Token from cookies");
+        //    }
+        //      }
+        //         config.headers["X-XSRF-TOKEN"]=csrfToken;
 
           
-        }
+        // }
 
 
 
