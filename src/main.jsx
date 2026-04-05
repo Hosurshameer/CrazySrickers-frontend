@@ -43,6 +43,8 @@ import { messagesLoader } from "./components/admin/Messages.jsx";
 import AdminOrderAfterClick from "./components/AdminOrderAfterClick.jsx";
 import UserOrdersAfterClick from "./components/UserOrdersAfterClick.jsx";
 import { contactLoader } from "./components/Contact.jsx";
+import Customize from "./components/customize.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 
 
 const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
@@ -50,12 +52,13 @@ const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcum
 
 const routeDefinations = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
-    <Route index element={<Home />} loader={productsLoader} />
+    <Route index element={<LandingPage />} />
     <Route path="/home" element={<Home />} loader={productsLoader} />
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} action={contactAction} loader={contactLoader} />
     <Route path="/login" element={<Login />} action={loginAction} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/customize" element={<Customize/>}/>
     <Route path="/register" element={<Register />} action={registerAction} />
 
     <Route path="/products/:productId" element={<ProductDetail />} />
