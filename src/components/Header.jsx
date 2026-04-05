@@ -93,7 +93,7 @@ export default function Header() {
     "block w-full text-left px-4 py-2 text-lg font-primary font-semibold text-primary dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-900";
 
   return (
-    <header className="border-b border-primary/30 dark:border-primary/30 sticky top-0 z-20 bg-normalbg dark:bg-black">
+    <header className="border-b border-primary/30 dark:border-primary/30 sticky top-0 z-20 bg-normalbg/95 backdrop-blur-md dark:bg-black/90">
       <div className="flex items-center justify-between mx-auto max-w-[1152px] px-6 py-4">
         <Link to="/" className={navLink}>
           <FontAwesomeIcon icon={faTags} className="h-8 w-8" />
@@ -142,6 +142,21 @@ export default function Header() {
                 Contact
               </NavLink>
             </li>
+             {isAuthenticated &&
+                
+                <li>
+              <NavLink
+                to="/customize"
+                className={({ isActive }) => {
+                  return isActive ? `underline ${navLink}` : navLink;
+                }}
+              >
+                Customize
+              </NavLink>
+            </li>
+                
+                }
+            
             <li>
               {isAuthenticated ? (
                 <div className="relative" ref={userMenuRef}>
@@ -198,6 +213,9 @@ export default function Header() {
                                     Messages
                                   </Link>
                                 </li>
+
+                                
+
                               </ul>
                             )}
                           </li>
@@ -238,6 +256,7 @@ export default function Header() {
                 </div>
               </Link>
             </li>
+
           </ul>
         </nav>
       </div>
