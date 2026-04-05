@@ -1,14 +1,17 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Home from "./components/Home";
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import { useNavigation } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 import EntrySplash from "./components/EntrySplash";
 
 function App() {
   const navigation = useNavigation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const hasCheckedReload = useRef(false);
   const [showStartupSplash, setShowStartupSplash] = useState(true);
   const [startupLeaving, setStartupLeaving] = useState(false);
 
@@ -25,6 +28,20 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (hasCheckedReload.current) {
+      return;
+    }
+
+    hasCheckedReload.current = true;
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    const isReload = navEntry?.type === "reload";
+
+    if (isReload && location.pathname !== "/") {
+      navigate("/", { replace: true });
+    }
+  }, [location.pathname, navigate]);
+
   return (
     <>
       <Header />
@@ -36,7 +53,11 @@ function App() {
           </div>
         </>
       ) : navigation.state === "loading" ? (
-        <EntrySplash />
+        <div className="flex min-h-[60vh] items-center justify-center bg-normalbg px-6 py-16 dark:bg-black">
+          <div className="rounded-2xl border border-primary/15 bg-white px-8 py-5 text-lg font-semibold text-primary shadow-sm dark:border-primary/20 dark:bg-gray-900 dark:text-light">
+            Loading...
+          </div>
+        </div>
       ) : (
         <Outlet />
       )}
