@@ -14,6 +14,7 @@ export default function ProductListings({ products,searchText,onSearch}) {
       return [];
     }
     
+    
     return products.slice().sort((a, b) => {
       switch (selectedSort) {
         case "Price Low to High":
