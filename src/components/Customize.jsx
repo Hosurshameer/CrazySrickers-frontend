@@ -1,10 +1,11 @@
 import React from 'react'
 
 import PageTltle from './PageTltle'
+import { NavLink } from 'react-router-dom';
 
 export default function Customize() {
   const actionButtonClass =
-    "w-full rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-primary font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md dark:border-primary/30 dark:bg-primary dark:text-black";
+    "inline-flex w-full items-center justify-center rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-primary font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md dark:border-primary/30 dark:bg-primary dark:text-black";
 
   return (
     <>
@@ -36,10 +37,10 @@ export default function Customize() {
                 </p>
 
                 <div className="mt-6 space-y-4">
-                  <button className={actionButtonClass}>Upload image</button>
-                  <button className={actionButtonClass}>
+                  <NavLink to="/upload" className={actionButtonClass}>Upload image</NavLink>
+                  <NavLink to="/capture" className={actionButtonClass}>
                     Capture image
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             </div>
