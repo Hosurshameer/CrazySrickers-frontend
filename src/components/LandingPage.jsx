@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+import { selectIsAuthenticated } from "../store/auth-slice";
+
 export default function LandingPage() {
-  return (
+  
+   const isAuthenticated=useSelector(selectIsAuthenticated);
+  
+   return (
     <main className="relative overflow-hidden bg-normalbg dark:bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(0,105,137,0.16),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(255,196,61,0.18),_transparent_28%)]" />
 
@@ -29,7 +35,7 @@ export default function LandingPage() {
               Explore Stickers
             </Link>
             <Link
-              to="/customize"
+              to={isAuthenticated?"/customize":"/login"}
               className="inline-flex items-center justify-center rounded-2xl border border-primary/20 bg-white px-7 py-4 text-lg font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/40 dark:bg-white/5 dark:text-light"
             >
               Create Your Own
