@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:localhost":"vite build --mode localhost",
-    "build:dev":"vite build --mode dev",
+    "build:localhost": "vite build --mode localhost",
+    "build:dev": "vite build --mode dev",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -27,6 +27,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.5",
     "react-toastify": "^11.0.5",
+    "react-webcam": "^7.2.0",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
