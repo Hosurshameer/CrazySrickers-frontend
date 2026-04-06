@@ -2,8 +2,18 @@ import React from 'react'
 
 import PageTltle from './PageTltle'
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 export default function Customize() {
+  const [capturedImage, setCapturedImage] = useState(null);
+
+  useEffect(() => {
+  const img = localStorage.getItem("capturedImage");
+  if (img) {
+    setCapturedImage(img);
+  }
+}, []);
+
   const actionButtonClass =
     "inline-flex w-full items-center justify-center rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-primary font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md dark:border-primary/30 dark:bg-primary dark:text-black";
 
@@ -42,6 +52,15 @@ export default function Customize() {
                     Capture image
                   </NavLink>
                 </div>
+                {capturedImage && (
+  <div className="mt-4">
+    <img
+      src={capturedImage}
+      alt="Captured"
+      className="w-40 rounded-lg"
+    />
+  </div>
+)}
               </div>
             </div>
           </div>
