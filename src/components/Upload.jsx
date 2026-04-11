@@ -1,20 +1,34 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import PageTltle from './PageTltle'
 
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState('')
+  const [file,setFile]=useState(null);
 
-  useEffect(() => {
-    const capturedImage = localStorage.getItem('capturedImage')
-    if (capturedImage) {
-      setPreviewImage(capturedImage)
-    }
-  }, [])
+ useEffect(() => {
+  const capturedImage = localStorage.getItem('capturedImage')
+
+  if (capturedImage) {
+    setPreviewImage(capturedImage)
+
+    
+ 
+    fetch(capturedImage)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], "captured.jpg", {
+          type: "image/jpeg",
+        })
+        setFile(file)
+      })
+  }
+}, [])
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files?.[0]
     if (!selectedFile) return
-
+    setFile(selectedFile);
     const filePreview = URL.createObjectURL(selectedFile)
     localStorage.removeItem('capturedImage')
     setPreviewImage(filePreview)
@@ -39,6 +53,14 @@ export default function Upload() {
           </div>
 
           <div className="rounded-[28px] bg-gray-50 p-6 shadow-inner dark:bg-gray-800/80">
+            <div className="mb-4 flex justify-end">
+              <NavLink
+                to="/customize"
+                className="rounded-2xl border border-primary/25 bg-white px-4 py-2 text-sm font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light"
+              >
+                Back to customize
+              </NavLink>
+            </div>
             <label
               htmlFor="file"
               className="mb-3 block text-lg font-semibold text-gray-900 dark:text-white"
