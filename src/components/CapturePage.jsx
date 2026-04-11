@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import PageTltle from "./PageTltle";
 import CameraCapture from "../components/CameraCapture";
@@ -44,6 +44,14 @@ export default function CapturePage() {
           </div>
 
           <div className="rounded-[28px] bg-gray-50 p-6 shadow-inner dark:bg-gray-800/80">
+            <div className="mb-4 flex justify-end">
+              <NavLink
+                to="/customize"
+                className="rounded-2xl border border-primary/25 bg-white px-4 py-2 text-sm font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light"
+              >
+                Back to customize
+              </NavLink>
+            </div>
             <CameraCapture setFile={setFile} />
 
             {file && (
