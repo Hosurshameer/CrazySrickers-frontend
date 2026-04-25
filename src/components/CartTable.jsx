@@ -65,7 +65,7 @@ const dispatch=useDispatch();
                       parseInt(e.target.value, 10) || 1
                     )
                   }
-                  className="w-16 px-2 py-1 border rounded-md focus:ring focus:ring-light dark:focus:ring-gray-600 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  className="glass-input glass-inline-input text-center"
                 />
               </td>
               <td className="px-4 sm:px-6 py-4 text-base font-light">
