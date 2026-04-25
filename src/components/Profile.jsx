@@ -55,18 +55,18 @@ export default function Profile() {
     }
   }, [actionData]);
 
-  const labelStyle =
-    "block text-lg font-semibold text-primary dark:text-primary mb-2";
-  const h2Style =
-    "block text-2xl font-semibold text-primary dark:text-primary mb-2";
-  const textFieldStyle =
-    "w-full px-4 py-2 text-base border rounded-md transition border-primary dark:border-light focus:ring focus:ring-dark dark:focus:ring-lighter focus:outline-none text-gray-800 dark:text-lighter bg-white dark:bg-gray-600 placeholder-gray-400 dark:placeholder-gray-300";
+  const labelStyle = "glass-label";
+  const h2Style = "glass-section-title";
+  const textFieldStyle = "glass-input";
 
   return (
     <div className="max-w-[1152px] min-h-[852px] mx-auto px-6 py-8 font-primary bg-normalbg dark:bg-darkbg">
       <PageTltle title="My Profile" />
 
-      <Form method="PUT" className="space-y-6 max-w-[768px] mx-auto">
+      <Form
+        method="PUT"
+        className="glass-form-shell space-y-6 max-w-[768px] mx-auto rounded-[28px] px-6 py-7 md:px-8"
+      >
         <div>
           <h2 className={h2Style}>Personal Details</h2>
           <label htmlFor="name" className={labelStyle}>
@@ -317,7 +317,7 @@ export default function Profile() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-2 mt-8 text-white dark:text-black text-xl rounded-md transition duration-200 bg-primary dark:bg-primary  dark:text-gray-300 hover:bg-dark "
+            className="glass-button max-w-[220px] mt-8"
           >
             {isSubmitting ? "Saving..." : "Save"}
           </button>
