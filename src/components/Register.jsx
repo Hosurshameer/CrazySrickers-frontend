@@ -51,14 +51,12 @@ export default function Register() {
     return true;
   };
 
-  const labelStyle =
-    "block text-lg font-semibold text-primary dark:text-light mb-2";
-  const textFieldStyle =
-    "w-full px-4 py-2 text-base border rounded-md transition border-primary dark:border-light focus:ring focus:ring-dark dark:focus:ring-lighter focus:outline-none text-gray-800 dark:text-lighter bg-white dark:bg-gray-600 placeholder-gray-400 dark:placeholder-gray-300";
+  const labelStyle = "glass-label";
+  const textFieldStyle = "glass-input";
 
   return (
     <div className="min-h-[752px] flex items-center justify-center font-primary dark:bg-darkbg">
-      <div className="bg-white dark:bg-gray-700 shadow-md rounded-lg max-w-md w-full px-8 py-6">
+      <div className="glass-form-shell max-w-md w-full rounded-[28px] px-8 py-8">
         <PageTltle title="Register" />
 
         <Form
@@ -173,7 +171,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full px-6 py-2 text-white dark:text-black text-xl bg-primary dark:bg-light hover:bg-dark dark:hover:bg-lighter rounded-md transition duration-200"
+            className="glass-button"
           >
             {isSubmitting ? "Registering..." : "Register"}
           </button>
