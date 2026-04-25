@@ -36,10 +36,8 @@ export default function Contact() {
       toast.info("Form submission cancelled.");
     }
   };
-  const labelStyle =
-    "block text-lg font-semibold text-primary dark:text-primary mb-2";
-  const textFieldStyle =
-    "w-full px-4 py-2 text-base border rounded-md transition border-primary dark:border-light focus:ring focus:ring-dark dark:focus:ring-lighter focus:outline-none text-gray-800 dark:text-lighter bg-white dark:bg-gray-600 placeholder-gray-400 dark:placeholder-gray-300";
+  const labelStyle = "glass-label";
+  const textFieldStyle = "glass-input";
   return (
     <div className="max-w-[1152px] min-h-[852px] mx-auto px-6 py-8 font-primary bg-normalbg dark:bg-darkbg">
       {/* Page Title */}
@@ -52,9 +50,9 @@ export default function Contact() {
 
 
  {/* Contact Info + Form Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-[952px] mx-auto mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[952px] mx-auto mt-8">
         {/* Left: Contact Details */}
-        <div className="text-primary dark:text-light  p-6">
+        <div className="glass-panel rounded-[28px] p-6 text-primary dark:text-light md:p-8">
           <h2 className="text-2xl font-semibold mb-4">Contact Info</h2>
           {contactInfo && (
             <>
@@ -78,7 +76,7 @@ export default function Contact() {
         method="POST"
         ref={formRef}
         onSubmit={handleSubmit}
-        className="space-y-6 max-w-[768px] mx-auto"
+        className="glass-form-shell space-y-6 max-w-[768px] mx-auto rounded-[28px] px-6 py-7 md:px-8"
       >
         {/* Name Field */}
         <div>
@@ -174,7 +172,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-2 text-white  text-xl rounded-md transition duration-200 bg-primary dark:bg-primary dark:text-gray-300 hover:bg-dark "
+            className="glass-button max-w-[220px]"
           >
             {isSubmitting ? "Submitting" : "Submit"}
           </button>
