@@ -52,7 +52,7 @@ export default function Upload() {
             </p>
           </div>
 
-          <div className="rounded-[28px] bg-gray-50 p-6 shadow-inner dark:bg-gray-800/80">
+          <div className="glass-panel rounded-[28px] p-6 shadow-inner md:p-8">
             <div className="mb-4 flex justify-end">
               <NavLink
                 to="/customize"
@@ -73,7 +73,7 @@ export default function Upload() {
               name="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="w-full rounded-2xl border border-dashed border-primary/40 bg-white px-4 py-6 text-sm text-gray-700 file:mr-4 file:rounded-xl file:border-0 file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-white hover:file:bg-primary/90 dark:bg-gray-900 dark:text-gray-300"
+              className="glass-input glass-file-input text-sm text-gray-700 dark:text-gray-300"
             />
 
             {previewImage && (
@@ -90,7 +90,7 @@ export default function Upload() {
             )}
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <button className="rounded-2xl bg-primary px-5 py-3 text-base font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90">
+              <button className="glass-button">
                 Normal Sticker
               </button>
               <button className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
