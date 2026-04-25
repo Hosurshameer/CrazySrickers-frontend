@@ -106,7 +106,7 @@ export default function ProductDetail() {
                 min="1"
                 value={quantity}
                 onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                className="w-16 px-2 py-1 border rounded-md focus:ring focus:ring-light dark:focus:ring-gray-600 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                className="glass-input glass-inline-input text-center"
               />
             </div>
 
