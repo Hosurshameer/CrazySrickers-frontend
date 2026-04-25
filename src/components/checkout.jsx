@@ -35,30 +35,24 @@ export default function CheckoutForm() {
 
   const isDarkMode = localStorage.getItem("theme") === "dark";
 
-  const labelStyle =
-    "block text-lg font-semibold text-primary dark:text-light mb-2";
-  const fieldBaseClass =
-    "w-full px-4 py-2 text-base border rounded-md transition border-primary dark:border-light focus:ring focus:ring-dark dark:focus:ring-lighter focus:outline-none text-gray-800 dark:text-lighter bg-white dark:bg-gray-600 placeholder-gray-400 dark:placeholder-gray-300";
-  const fieldErrorClass =
-    "border-red-400 dark:border-red-500 focus:ring-red-500";
-  const fieldValidClass =
-    "border-primary dark:border-light focus:ring-dark dark:focus:ring-lighter";
+  const labelStyle = "glass-label";
+  const fieldBaseClass = "glass-input";
+  const fieldErrorClass = "glass-input-error";
 
   const getClassForElement = (field) =>
-    `${fieldBaseClass} ${
-      elementErrors[field] ? fieldErrorClass : fieldValidClass
-    }`;
+    `${fieldBaseClass} ${elementErrors[field] ? fieldErrorClass : ""}`;
 
   const elementOptions = {
     style: {
       base: {
         fontSize: "16px",
+        fontFamily: "Sora, sans-serif",
         color: isDarkMode ? "#E5E7EB" : "#374151",
-        backgroundColor: isDarkMode ? "#4B5563" : "#FFFFFF",
+        backgroundColor: "transparent",
       },
       invalid: {
         color: "#F87171",
-        backgroundColor: isDarkMode ? "#4B5563" : "#FFFFFF",
+        backgroundColor: "transparent",
       },
     },
   };
@@ -168,7 +162,7 @@ export default function CheckoutForm() {
         className={
           isProcessing
             ? "hidden"
-            : "visible bg-white dark:bg-gray-700 shadow-md rounded-lg max-w-md w-full px-8 py-6"
+            : "visible glass-form-shell max-w-md w-full rounded-[28px] px-8 py-8"
         }
       >
         <PageTltle title="Complete Your Payment" />
@@ -242,7 +236,7 @@ export default function CheckoutForm() {
             <button
               type="submit"
               disabled={!stripe || isProcessing}
-              className="w-full px-6 py-2 mt-6 text-white dark:text-black text-xl bg-primary dark:bg-light hover:bg-dark dark:hover:bg-lighter rounded-md transition duration-200"
+              className="glass-button mt-6"
             >
               {isProcessing ? "Payment processing..." : "Pay Now"}
             </button>
