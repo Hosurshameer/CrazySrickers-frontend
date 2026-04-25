@@ -12,7 +12,7 @@ export default function Dropdown({
         {label}
       </label>
       <select
-        className="px-3 py-2 text-base border rounded-md transition border-primary/50 dark:border-primary/50 bg-white dark:bg-black focus:ring-2 focus:ring-primary dark:focus:ring-primary focus:outline-none text-gray-800 dark:text-gray-200"
+        className="glass-input max-w-[220px]"
         value={selectedValue}
         onChange={(event) => handleSort(event.target.value)}
       >
@@ -20,7 +20,7 @@ export default function Dropdown({
           <option
             key={index}
             value={optionVal}
-            className="bg-white dark:bg-black dark:text-gray-200"
+            className="dark:text-gray-200"
           >
             {optionVal}
           </option>
