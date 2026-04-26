@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import PageTltle from './PageTltle'
 
 export default function Upload() {
-  const [previewImage, setPreviewImage] = useState('')
+  const [previewImage, setPreviewImage] = useState(null)
   const [file,setFile]=useState(null);
 
  useEffect(() => {
@@ -90,12 +90,12 @@ export default function Upload() {
             )}
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <button className="glass-button">
+              <button disabled={previewImage===null} className="glass-button">
                 Normal Sticker
               </button>
-              <button className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
+              <button disabled={previewImage===null} className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
                 AI Generated Sticker
-              </button>
+              </button> 
             </div>
           </div>
         </div>
