@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import PageTltle from './PageTltle'
+import apiClient from '../api/apiClient';
 
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState(null)
   const [file,setFile]=useState(null);
+  
+  const navigate=useNavigate();
 
  useEffect(() => {
   const capturedImage = localStorage.getItem('capturedImage')
@@ -32,6 +35,44 @@ export default function Upload() {
     const filePreview = URL.createObjectURL(selectedFile)
     localStorage.removeItem('capturedImage')
     setPreviewImage(filePreview)
+  }
+
+  const handleClickAnime=async()=>{
+    if(!file) return;
+
+    
+    try{
+      const formData=new FormData();
+      formData.append("file",file);
+
+
+       const res = await apiClient.post("/anime", formData);
+
+      let data=res.data;
+      if(data){
+      navigate("/displaysticker",{state:data});
+      }
+
+
+    }catch(error){
+
+       if (error.response?.status === 400) {
+      alert("Validation error");
+    }else{
+           alert(
+      error.response?.data?.errorMessage ||
+      error.message ||
+      "Something went wrong"
+    );
+
+   
+    }
+   
+
+    } 
+  }
+  const handleClick=()=>{
+    navigate("/displaysticker",{state:{imageUrl:previewImage}});
   }
 
   return (
@@ -90,10 +131,10 @@ export default function Upload() {
             )}
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <button disabled={previewImage===null} className="glass-button">
+              <button onClick={handleClick} disabled={previewImage===null} className="glass-button">
                 Normal Sticker
               </button>
-              <button disabled={previewImage===null} className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
+              <button onClick={handleClickAnime} disabled={previewImage===null} className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
                 AI Generated Sticker
               </button> 
             </div>
