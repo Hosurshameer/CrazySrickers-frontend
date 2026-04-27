@@ -47,6 +47,7 @@ import Customize from "./components/customize.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import Upload from "./components/upload.jsx";
 import CapturePage from "./components/CapturePage.jsx";
+import DisplaySticker from "./components/DisplaySticker.jsx";
 
 
 const stripePromise=loadStripe("pk_test_51SwbPv2OhKYF21eMjvcsEM6g1ivgO5JKi1SEcumFH9Hm4c5VGa9hBr1S2nEvnqqEVb8wUHZrzQVLYkluBhLbheq200uG3hHJVL");
@@ -61,6 +62,7 @@ const routeDefinations = createRoutesFromElements(
     <Route path="/login" element={<Login />} action={loginAction} />
     <Route path="/cart" element={<Cart />} />
     <Route path="/capture" element={<CapturePage />} />
+    <Route path="/displaysticker" element={< DisplaySticker/>} />
     
     <Route path="/upload" element={<Upload/>}/>
     <Route path="/customize" element={<Customize/>}/>
