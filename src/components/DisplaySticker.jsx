@@ -130,6 +130,7 @@ export default function DisplaySticker() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <NavLink
                 to="/upload"
+                state={{imageUrl}}
                 className="glass-button inline-flex items-center justify-center"
               >
                 Back to upload
