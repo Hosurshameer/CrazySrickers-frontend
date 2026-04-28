@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import PageTltle from './PageTltle'
 import apiClient from '../api/apiClient';
 
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState(null)
   const [file,setFile]=useState(null);
+
+  const location=useLocation();
+  const imageUrl=location.state?.imageUrl;
+
   
   const navigate=useNavigate();
 
@@ -124,6 +128,19 @@ export default function Upload() {
                 </p>
                 <img
                   src={previewImage}
+                  alt="Selected preview"
+                  className="h-64 w-full rounded-2xl object-cover"
+                />
+              </div>
+            )}
+
+            {imageUrl && (
+              <div className="mt-6 overflow-hidden rounded-3xl border border-primary/15 bg-white p-3 dark:bg-gray-900">
+                <p className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Selected image preview
+                </p>
+                <img
+                  src={imageUrl}
                   alt="Selected preview"
                   className="h-64 w-full rounded-2xl object-cover"
                 />
