@@ -7,8 +7,13 @@ export default function Upload() {
   const [previewImage, setPreviewImage] = useState(null)
   const [file,setFile]=useState(null);
 
-  const location=useLocation();
-  const imageUrl=location.state?.imageUrl;
+
+   const location=useLocation();
+  const [imageUrl,setImageUrl]=useState(location.state?.imageUrl);
+
+
+ 
+  
 
   
   const navigate=useNavigate();
@@ -79,6 +84,10 @@ export default function Upload() {
     navigate("/displaysticker",{state:{imageUrl:previewImage}});
   }
 
+  const handleRemoveClick=()=>{
+   setImageUrl(null);
+  }
+
   return (
     <>
       <PageTltle title="Pick your style" />
@@ -139,11 +148,20 @@ export default function Upload() {
                 <p className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300">
                   Selected image preview
                 </p>
+                <div className="flex flex-col items-center gap-4">
                 <img
                   src={imageUrl}
                   alt="Selected preview"
                   className="h-64 w-full rounded-2xl object-cover"
                 />
+
+                <button
+                onClick={handleRemoveClick}
+                className="rounded-xl bg-red-500 px-4 py-2 text-white font-semibold hover:bg-red-600 transition"
+                >
+                  Remove
+                  </button>
+                </div>
               </div>
             )}
 
