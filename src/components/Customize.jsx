@@ -14,6 +14,11 @@ export default function Customize() {
   }
 }, []);
 
+const handleClick=()=>{
+  setCapturedImage(null);
+  localStorage.removeItem("capturedImage");
+}
+
   const actionButtonClass =
     "inline-flex w-full items-center justify-center rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-primary font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md dark:border-primary/30 dark:bg-primary dark:text-black";
 
@@ -53,12 +58,19 @@ export default function Customize() {
                   </NavLink>
                 </div>
                 {capturedImage && (
-  <div className="mt-4">
+  <div className="mt-4 flex flex-col items-center gap-3">
     <img
       src={capturedImage}
       alt="Captured"
-      className="w-40 rounded-lg"
+      className="w-40 rounded-lg shadow-md"
     />
+
+    <button
+      onClick={handleClick}
+      className="rounded-xl bg-red-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-red-600 active:scale-95"
+    >
+      Remove
+    </button>
   </div>
 )}
               </div>
