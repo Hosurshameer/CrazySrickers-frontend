@@ -80,12 +80,18 @@ export default function Upload() {
 
     } 
   }
-  const handleClick=()=>{
-    navigate("/displaysticker",{state:{imageUrl:previewImage}});
-  }
+  const handleClick = () => {
+  navigate("/displaysticker", {
+    state: { imageUrl: previewImage || imageUrl }
+  });
+};
 
   const handleRemoveClick=()=>{
-   setImageUrl(null);
+  setPreviewImage(null);
+  }
+
+  const handleRemoveImgClick=()=>{
+    setImageUrl(null);
   }
 
   return (
@@ -130,7 +136,7 @@ export default function Upload() {
               className="glass-input glass-file-input text-sm text-gray-700 dark:text-gray-300"
             />
 
-            {previewImage && (
+            {previewImage ? (
               <div className="mt-6 overflow-hidden rounded-3xl border border-primary/15 bg-white p-3 dark:bg-gray-900">
                 <p className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300">
                   Selected image preview
@@ -140,10 +146,21 @@ export default function Upload() {
                   alt="Selected preview"
                   className="h-64 w-full rounded-2xl object-cover"
                 />
+                  <div className="flex justify-center mt-4">
+  <button
+    onClick={handleRemoveClick}
+    className="rounded-xl bg-red-500 px-6 py-2 text-white font-semibold hover:bg-red-600 transition"
+  >
+    Remove
+  </button>
+</div>
+        
               </div>
-            )}
+               
+            
 
-            {imageUrl && (
+
+            ): imageUrl && (
               <div className="mt-6 overflow-hidden rounded-3xl border border-primary/15 bg-white p-3 dark:bg-gray-900">
                 <p className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300">
                   Selected image preview
@@ -155,21 +172,29 @@ export default function Upload() {
                   className="h-64 w-full rounded-2xl object-cover"
                 />
 
-                <button
-                onClick={handleRemoveClick}
-                className="rounded-xl bg-red-500 px-4 py-2 text-white font-semibold hover:bg-red-600 transition"
-                >
-                  Remove
-                  </button>
+          
                 </div>
+
+                <div className="flex justify-center mt-4">
+  <button
+    onClick={handleRemoveImgClick}
+    className="rounded-xl bg-red-500 px-6 py-2 text-white font-semibold hover:bg-red-600 transition"
+  >
+    Remove
+  </button>
+</div>
               </div>
             )}
 
+           
+
+           
+
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <button onClick={handleClick} disabled={previewImage===null} className="glass-button">
+              <button onClick={handleClick} disabled={!previewImage && !imageUrl} className="glass-button">
                 Normal Sticker
               </button>
-              <button onClick={handleClickAnime} disabled={previewImage===null} className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
+              <button onClick={handleClickAnime} disabled={!previewImage && !imageUrl} className="rounded-2xl border border-primary/25 bg-white px-5 py-3 text-base font-semibold text-primary transition duration-200 hover:-translate-y-0.5 hover:border-primary/50 dark:bg-gray-900 dark:text-light">
                 AI Generated Sticker
               </button> 
             </div>
