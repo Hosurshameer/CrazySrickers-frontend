@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import PageTltle from './PageTltle'
-import apiClient from '../api/apiClient';
 
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState(null)
@@ -46,39 +45,16 @@ export default function Upload() {
     setPreviewImage(filePreview)
   }
 
-  const handleClickAnime=async()=>{
-    if(!file) return;
+  const handleClickAnime = () => {
+    const sourceImageUrl = previewImage || imageUrl
+    if (!sourceImageUrl) return
 
-    
-    try{
-      const formData=new FormData();
-      formData.append("file",file);
-
-
-       const res = await apiClient.post("/anime", formData);
-
-      let data=res.data;
-      if(data){
-      navigate("/displaysticker",{state:data});
-      }
-
-
-    }catch(error){
-
-       if (error.response?.status === 400) {
-      alert("Validation error");
-    }else{
-           alert(
-      error.response?.data?.errorMessage ||
-      error.message ||
-      "Something went wrong"
-    );
-
-   
-    }
-   
-
-    } 
+    navigate("/anime-sticker", {
+      state: {
+        file,
+        sourceImageUrl,
+      },
+    })
   }
   const handleClick = () => {
   navigate("/displaysticker", {
@@ -189,7 +165,6 @@ export default function Upload() {
            
 
            
-
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <button onClick={handleClick} disabled={!previewImage && !imageUrl} className="glass-button">
                 Normal Sticker

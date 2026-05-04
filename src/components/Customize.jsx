@@ -66,7 +66,7 @@ const handleClick=()=>{
     />
 
     <button
-      onClick={handleClick}
+      onClick={handleClick}a
       className="rounded-xl bg-red-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-red-600 active:scale-95"
     >
       Remove
