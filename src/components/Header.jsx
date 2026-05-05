@@ -189,9 +189,9 @@ export default function Header() {
                           <li>
                             <button
                               onClick={toggleAdminMenu}
-                              className={`${dropdownLinkClass} flex items-center justify-between`}
+                              className={`${dropdownLinkClass} flex items-center justify-between font-semibold`}
                             >
-                              Admin
+                              <span className="font-bold">Admin</span>
                               <FontAwesomeIcon icon={faAngleDown} />
                             </button>
 
