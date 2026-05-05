@@ -17,29 +17,21 @@ export default function AdminOrders() {
     });
   }
 
-  /**
-   * Handle Order Confirm
-   */
   const handleConfirm = async (orderId) => {
     try {
       await apiClient.patch(`/admin/orders/${orderId}/confirm`);
       toast.success(`Order ${orderId} confirmed`);
-      revalidator.revalidate(); // 🔁 Re-run loader
+      revalidator.revalidate();
     } catch (error) {
       toast.error("Failed to confirm order.");
-     
     }
   };
 
-  /**
-   * Handle Order Cancellation
-   */
   const handleCancel = async (orderId) => {
     try {
       await apiClient.patch(`/admin/orders/${orderId}/cancel`);
-      
       toast.success(`Order ${orderId} cancelled`);
-      revalidator.revalidate(); // 🔁 Re-run loader
+      revalidator.revalidate();
     } catch (error) {
       toast.error("Failed to cancel order.");
     }
@@ -52,90 +44,86 @@ export default function AdminOrders() {
           No orders found.
         </p>
       ) : (
-        <div className="space-y-6 mt-4">
+        <div className="mt-4 space-y-6">
           <PageTltle title="Admin Orders Management" />
-          {orders.map((order) => (
-            <div
-              key={order.orderId}
-              className="bg-white dark:bg-gray-700 shadow-md rounded-md p-6"
-            >
-              {/* Top Row: Order Info + Buttons */}
-              <div className="flex flex-wrap items-center justify-between mb-4">
-                <div>
-                  <h2 className="text-xl font-semibold text-primary dark:text-lighter">
-                    Order #{order.orderId}
-                  </h2>
+          {orders.map((order) => {
+            return (
+              <div
+                key={order.orderId}
+                className="rounded-md bg-white p-6 shadow-md dark:bg-gray-700"
+              >
+                <div className="mb-4 flex flex-wrap items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold text-primary dark:text-lighter">
+                      Order #{order.orderId}
+                    </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Status:{" "}
-                    <span className="font-medium text-gray-800 dark:text-lighter">
-                      {order.status}
-                    </span>
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Total Price:{" "}
-                    <span className="font-medium text-gray-800 dark:text-gray-200">
-                      ${order.totalPrice}
-                    </span>
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Date:{" "}
-                    <span className="font-medium text-gray-800 dark:text-gray-200">
-                      {formatDate(order.createdAt)}
-                    </span>
-                  </p>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex space-x-4 mt-4 lg:mt-0">
-                  <button
-                    onClick={() => handleConfirm(order.orderId)}
-                    className="px-6 py-2 text-white dark:text-dark text-md rounded-md transition duration-200 bg-primary dark:bg-light hover:bg-dark dark:hover:bg-lighter"
-                  >
-                    Confirm
-                  </button>
-                  <button
-                    onClick={() => handleCancel(order.orderId)}
-                    className="px-6 py-2 text-white text-md rounded-md transition duration-200 bg-red-500 hover:bg-red-600"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-
-              {/* Order Items */}
-              <div className="space-y-4 border-t pt-4">
-                {order.items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center border-b pb-4 last:border-b-0"
-                  >
-                    <Link
-                    to={`/item/${item.productId}`}
-                    state={item}
-                    >
-                    <img
-                      src={item.imageUrl}
-                      alt={item.productName}
-                      className="w-16 h-16 object-cover rounded-md mr-4"
-                    />
-                    </Link>
-                    
-                    <div>
-                      <h3 className="text-md font-medium text-gray-800 dark:text-gray-200">
-                        {item.productName}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Quantity: {item.quantity}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Price: ${item.price}
-                      </p>
-                    </div>
+                      <span className="font-medium text-gray-800 dark:text-lighter">
+                        {order.status}
+                      </span>
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Total Price:{" "}
+                      <span className="font-medium text-gray-800 dark:text-gray-200">
+                        ${order.totalPrice}
+                      </span>
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Date:{" "}
+                      <span className="font-medium text-gray-800 dark:text-gray-200">
+                        {formatDate(order.createdAt)}
+                      </span>
+                    </p>
                   </div>
-                ))}
+
+                  <div className="mt-4 flex space-x-4 lg:mt-0">
+                    <button
+                      onClick={() => handleConfirm(order.orderId)}
+                      className="rounded-md bg-primary px-6 py-2 text-md text-white transition duration-200 hover:bg-dark dark:bg-light dark:text-dark dark:hover:bg-lighter"
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      onClick={() => handleCancel(order.orderId)}
+                      className="rounded-md bg-red-500 px-6 py-2 text-md text-white transition duration-200 hover:bg-red-600"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-4 border-t pt-4">
+                  {order.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center border-b pb-4 last:border-b-0"
+                    >
+                      <Link to={`/item/${item.productId}`} state={item}>
+                        <img
+                          src={item.imageUrl}
+                          alt={item.productName}
+                          className="mr-4 h-16 w-16 rounded-md object-cover"
+                        />
+                      </Link>
+
+                      <div>
+                        <h3 className="text-md font-medium text-gray-800 dark:text-gray-200">
+                          {item.productName}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Quantity: {item.quantity}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Price: ${item.price}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
@@ -144,7 +132,7 @@ export default function AdminOrders() {
 
 export async function adminOrdersLoader() {
   try {
-    const response = await apiClient.get("/admin/orders"); // Axios GET Request
+    const response = await apiClient.get("/admin/orders");
     return response.data;
   } catch (error) {
     throw new Response(
