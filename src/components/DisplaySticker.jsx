@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import PageTltle from "./PageTltle";
 
@@ -135,6 +137,15 @@ export default function DisplaySticker() {
               >
                 Back to upload
               </NavLink>
+
+              <button
+                type="button"
+                disabled={!hasImage}
+                aria-label="Add to Cart"
+                className="inline-flex items-center justify-center rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-semibold text-white shadow-[0_16px_34px_rgba(0,105,137,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:border-primary/10 disabled:bg-primary/40"
+              >
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </button>
 
               {hasImage ? (
                 <a
