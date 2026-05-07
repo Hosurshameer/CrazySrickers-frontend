@@ -185,7 +185,7 @@ export default function DisplaySticker() {
                 } disabled:cursor-not-allowed disabled:border-primary/10 disabled:bg-primary/40`}
               >
                 <FontAwesomeIcon icon={isAddedToCart ? faCheck : faShoppingCart} />
-                <span>{isAddedToCart ? "Added to cart" : "Add to cart"}</span>
+                {/* <span>{isAddedToCart ? "Added to cart" : "Add to cart"}</span> */}
               </button>
 
               {hasImage ? (
