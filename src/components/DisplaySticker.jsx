@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useLocation } from "react-router-dom";
 import PageTltle from "./PageTltle";
+import {
+  addCustomStickerToCart,
+  isCustomStickerInCart,
+} from "../utils/customStickerCart";
 
 const previewNotes = [
   "Clean sticker framing with a bold presentation.",
@@ -14,21 +18,37 @@ export default function DisplaySticker() {
   const location = useLocation();
   const imageUrl = location.state?.imageUrl;
   const hasImage = Boolean(imageUrl);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  const handleAddToCart=()=>{
-    const arr=JSON.parse(localStorage.getItem("customStickers")) || [];
-    arr.push(
-      {
-        imageUrl:imageUrl,
-        prompt:"Normal Sticker",
-        price:"$8",
+  useEffect(() => {
+    if (!hasImage) {
+      setIsAddedToCart(false);
+      return;
+    }
 
-      }
+    setIsAddedToCart(
+      isCustomStickerInCart({
+        imageUrl,
+        prompt: "Normal Sticker",
+        price: "$8",
+      })
     );
+  }, [hasImage, imageUrl]);
 
-  localStorage.setItem("customStickers",JSON.stringify(arr));
+  const handleAddToCart = () => {
+    if (!hasImage) {
+      return;
+    }
 
-  }
+    const sticker = {
+      imageUrl,
+      prompt: "Normal Sticker",
+      price: "$8",
+    };
+
+    addCustomStickerToCart(sticker);
+    setIsAddedToCart(true);
+  };
 
   return (
     <>
@@ -157,10 +177,15 @@ export default function DisplaySticker() {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={!hasImage}
-                aria-label="Add to Cart"
-                className="inline-flex items-center justify-center rounded-2xl border border-primary/20 bg-primary px-5 py-3 text-base font-semibold text-white shadow-[0_16px_34px_rgba(0,105,137,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:border-primary/10 disabled:bg-primary/40"
+                aria-label={isAddedToCart ? "Added to cart" : "Add to cart"}
+                className={`inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-base font-semibold text-white shadow-[0_16px_34px_rgba(0,105,137,0.18)] transition duration-200 ${
+                  isAddedToCart
+                    ? "border-emerald-500 bg-emerald-500 hover:bg-emerald-600"
+                    : "border-primary/20 bg-primary hover:-translate-y-0.5 hover:bg-primary/90"
+                } disabled:cursor-not-allowed disabled:border-primary/10 disabled:bg-primary/40`}
               >
-                <FontAwesomeIcon icon={faShoppingCart} />
+                <FontAwesomeIcon icon={isAddedToCart ? faCheck : faShoppingCart} />
+                <span>{isAddedToCart ? "Added to cart" : "Add to cart"}</span>
               </button>
 
               {hasImage ? (
