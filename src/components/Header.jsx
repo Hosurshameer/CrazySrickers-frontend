@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { selectIsAuthenticated,selectUser,logout} from "../store/auth-slice";
 
 import { useSelector,useDispatch } from "react-redux";
+import { selectCartItems } from "../store/cart-slice";
+import { clearCart } from "../store/cart-slice";
 
 export default function Header() {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -25,6 +27,8 @@ export default function Header() {
   const location = useLocation();
   const userMenuRef = useRef();
   const navigate = useNavigate();
+
+  
  
 
    // This should come from auth context or user role
@@ -83,7 +87,9 @@ export default function Header() {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    dispatch(clearCart());
     dispatch(logout());
+     
     toast.success("Logged out successfully");
     navigate("/home");
   };
