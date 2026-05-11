@@ -214,6 +214,9 @@ export default function AnimeDisplaySticker() {
                 <span>{isAddedToCart ? "Added to cart" : "Add to cart"}</span>
               </button>
 
+
+
+
               {hasAnimeSticker && (
                 <a
                   href={animeSticker.imageUrl}
