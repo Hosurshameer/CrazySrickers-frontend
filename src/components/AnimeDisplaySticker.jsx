@@ -217,6 +217,9 @@ export default function AnimeDisplaySticker() {
 
 
 
+
+
+
               {hasAnimeSticker && (
                 <a
                   href={animeSticker.imageUrl}
